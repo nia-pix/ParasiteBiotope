@@ -1,11 +1,11 @@
 using UnityEngine;
-using TMPro; // 文字をいじるための呪文
+using TMPro; // 文字をいじる場所
 
 public class DataStreamEffect : MonoBehaviour
 {
     [Header("設定")]
-    public bool isHexCode = true; // チェック入れると「F4 A1...」、外すと「数字」になる
-    public float updateSpeed = 0.05f; // 数字が変わる速さ（小さいほど速い）
+    public bool isHexCode = true; 
+    public float updateSpeed = 0.05f; 
 
     private TextMeshProUGUI _text;
     private float _timer;
@@ -20,17 +20,17 @@ public class DataStreamEffect : MonoBehaviour
     {
         _timer += Time.deltaTime;
 
-        // 指定した時間ごとに文字を書き換える
+        
         if (_timer > updateSpeed)
         {
             if (isHexCode)
             {
-                // 16進数パターン（謎のコード風）
+               
                 _text.text = "MEM_DUMP: " + GenerateHex(12);
             }
             else
             {
-                // 緯度経度スキャン風
+                // 緯度経度
                 float lat = 35.689f + Random.Range(-0.01f, 0.01f);
                 float lon = 139.691f + Random.Range(-0.01f, 0.01f);
                 _text.text = $"SCANNING...\nLAT: {lat:F6}\nLON: {lon:F6}";
@@ -39,7 +39,7 @@ public class DataStreamEffect : MonoBehaviour
         }
     }
 
-    // ランダムな16進数（0F A3...）を作る魔法
+   
     string GenerateHex(int length)
     {
         string hex = "";

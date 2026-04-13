@@ -3,21 +3,20 @@ using System.Collections.Generic;
 
 public class CityOverlay : MonoBehaviour
 {
-    [Header("重ねたいマテリアル（ワイヤーフレーム）")]
+    [Header("ワイヤーフレーム")]
     public Material overlayMaterial;
 
-    [Header("ズラす量（チラつき防止）")]
+    [Header("ズラす")]
     public Vector3 offset = new Vector3(0.02f, 0.02f, 0.02f);
 
-    // ↓ 変なボタン変数は削除して、シンプルにしました！
+    
 
-    // ★魔法の呪文：これを書くと「︙」メニューに追加される！
-    [ContextMenu("★ここを押して生成！★")] 
+    [ContextMenu("ここを押して生成★")] 
     void GenerateOverlay()
     {
         if (overlayMaterial == null)
         {
-            Debug.LogError("マテリアルがセットされてないよ！");
+            Debug.LogError("マテリアルがセットされてません");
             return;
         }
 
@@ -51,6 +50,6 @@ public class CityOverlay : MonoBehaviour
             count++;
         }
 
-        Debug.Log($"完了！ {count} 個のビルにワイヤーフレームを重ねたよ！✨");
+        Debug.Log($"完了！ {count} 個のビルにワイヤーフレーム完了");
     }
 }

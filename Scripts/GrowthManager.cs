@@ -4,7 +4,7 @@ using DG.Tweening;
 public class GrowthManager : MonoBehaviour
 {
     [Header("基本設定")]
-    // ★ここを変更！ [] をつけて「複数形」にしたよ
+    
     public GameObject[] segmentPrefabs; 
     public float moveSpeed = 2.0f;
     public float segmentInterval = 0.5f;
@@ -15,12 +15,12 @@ public class GrowthManager : MonoBehaviour
     public float growDuration = 0.5f;
     public Ease growEase = Ease.OutSine;
 
-    [Header("B: ノイズによるゆらぎ")]
+    [Header("B: ノイズ")]
     public float wiggleStrength = 30f;
     public float wiggleSpeed = 2.0f;
     private float noiseOffset;
 
-    [Header("C: 枝分かれ設定")]
+    [Header("C: 枝分かれ")]
     [Range(0, 100)]
     public float branchProbability = 10f;
     public int maxGeneration = 3;
@@ -97,10 +97,10 @@ public class GrowthManager : MonoBehaviour
 
     void SpawnSegment()
     {
-        // ★変更点：プレハブが登録されているかチェック
+        
         if (segmentPrefabs != null && segmentPrefabs.Length > 0)
         {
-            // ★ここが魔法！ランダムに1つ選ぶサイコロ
+            
             int randomIndex = Random.Range(0, segmentPrefabs.Length);
             GameObject selectedPrefab = segmentPrefabs[randomIndex];
 
@@ -136,7 +136,7 @@ public class GrowthManager : MonoBehaviour
             manager.currentGeneration = this.currentGeneration + 1;
             manager.maxSegments = Mathf.RoundToInt(this.maxSegments * 0.7f);
             
-            // ★枝分かれした先でも、同じプレハブリストを引き継ぐ
+            // 枝分かれした先でも、同じプレハブリストから！！
             manager.segmentPrefabs = this.segmentPrefabs;
 
             newBranch.transform.Rotate(Vector3.up, Random.Range(-branchAngle, branchAngle));

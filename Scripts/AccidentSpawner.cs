@@ -43,22 +43,19 @@ public class AccidentSpawner : MonoBehaviour
                 double lat = double.Parse(data[latColumnIndex]);
                 double lon = double.Parse(data[lonColumnIndex]);
 
-                // 1. まず上空の座標を計算
                 Vector3 skyPos = ConvertGeoToUnity(lat, lon);
-                skyPos.y = rayStartHeight; // 高いところからスタート
+                skyPos.y = rayStartHeight; // 高いところから
 
-                // 2. 下に向かってレーザー発射！ (Raycast)
                 RaycastHit hit;
-                // "out hit" という箱に、ぶつかった場所の情報が入るよ
+                
                 if (Physics.Raycast(skyPos, Vector3.down, out hit, 1000.0f))
                 {
-                    // ぶつかった場所（hit.point）に生成！
                     Instantiate(objectToSpawn, hit.point, Quaternion.identity, this.transform);
                     count++;
                 }
                 else
                 {
-                    // 地面がない場所（地図の外とか）なら、とりあえず地面(Y=0)に置く
+                    
                     Vector3 groundPos = skyPos;
                     groundPos.y = 0;
                     Instantiate(objectToSpawn, groundPos, Quaternion.identity, this.transform);
@@ -82,6 +79,6 @@ public class AccidentSpawner : MonoBehaviour
         float x = (float)(lonDiff * lonToMeter);
         float z = (float)(latDiff * latToMeter);
         
-        return new Vector3(x, 0, z); // Yはあとで決めるので適当
+        return new Vector3(x, 0, z); // Yはあとで決める
     }
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Waypoint : MonoBehaviour
 {
-    // 次に行ける場所リスト
+    // 次に行ける場所
     public Waypoint[] nextPoints;
 
     private void OnDrawGizmos()
